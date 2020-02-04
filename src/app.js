@@ -7,6 +7,7 @@ const { spawn } = require('child_process');
 const { NODE_ENV } = require('../config');
 
 let show = spawn('python', ['/home/pi/Projects/pi-led-server/src/shows/main.py'], ['-c']);
+let isShowing = true;
 
 const app = express();
 
@@ -33,9 +34,14 @@ app.use((error, req, res, next) => {
 
 app.get('/led', (req, res) => {
   const { type } = req.query;
-  show.kill('SIGINT')
   new Promise(resolve => {
-    show.on('close', resolve)
+    if (isShowing) {
+      show.kill('SIGINT');
+      show.on('exit', resolve)
+    }
+    else {
+      resolve();
+    }
   }).then(() => {
     show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/${type}.py`], ['-c']);
     show.stdout.on('data', (data) => {
@@ -51,15 +57,11 @@ app.get('/led', (req, res) => {
     });
     res.send('Hello, world!');
   })
-
-
-
 });
 
 app.get('/kill', (req, res) => {
-  show.kill('SIGINT')
-  new Promise(resolve => show.on('close', resolve))
-    .then(() => show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/clear.py`], ['-c']));
+  show.kill('SIGINT');
+  isShowing = false;
   res.send('turned out the lights :)');
 });
 
