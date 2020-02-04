@@ -3,7 +3,10 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
+const { spawn } = require('child_process');
 const { NODE_ENV } = require('../config');
+
+let show = spawn('python', ["/home/pi/Projects/pi-led-server/src/shows/main.py"]);
 
 const app = express();
 
@@ -29,6 +32,20 @@ app.use((error, req, res, next) => {
 });
 
 app.get('/led', (req, res) => {
+  const { type } = req.query;
+  show.kill('SIGINT');
+  show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/${type}.py`]);
+  show.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+
+  show.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+  });
+
+  show.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
   res.send('Hello, world!');
 });
 
