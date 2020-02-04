@@ -55,6 +55,7 @@ app.get('/led', (req, res) => {
     show.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
     });
+    isShowing = true;
     res.send('Hello, world!');
   })
 });
