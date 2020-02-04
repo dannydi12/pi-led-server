@@ -3,17 +3,14 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
+const reset = require('./reset');
 const { spawn } = require('child_process');
+require('./store');
 const { NODE_ENV } = require('../config');
-
-let show = spawn('python', ['/home/pi/Projects/pi-led-server/src/shows/main.py'], ['-c']);
-let isShowing = true;
 
 const app = express();
 
-const morganOption = NODE_ENV === 'production' ? 'tiny' : 'common';
-
-app.use(morgan(morganOption));
+app.use(morgan(NODE_ENV === 'production' ? 'tiny' : 'common'));
 app.use(helmet());
 app.use(cors());
 app.use((error, req, res, next) => {
@@ -32,37 +29,21 @@ app.use((error, req, res, next) => {
   res.status(500).send(response);
 });
 
-app.get('/led', (req, res) => {
+app.get('/led', reset, (req, res) => {
   const { type } = req.query;
-  new Promise(resolve => {
-    if (isShowing) {
-      show.kill('SIGINT');
-      show.on('exit', resolve)
-    }
-    else {
-      resolve();
-    }
-  }).then(() => {
-    show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/${type}.py`], ['-c']);
-    show.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
+  show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/${type}.py`], ['-c']);
 
-    show.stderr.on('data', (data) => {
-      console.error(`stderr: ${data}`);
-    });
+  show.stdout.on('data', (data) => console.log(`stdout: ${data}`));
+  show.stderr.on('data', (data) => console.error(`stderr: ${data}`));
+  show.on('close', (code) => console.log(`child process exited with code ${code}`));
 
-    show.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-    });
-    isShowing = true;
-    res.send('Hello, world!');
-  })
+  isShowing = true
+  res.send('Hello, world!');
 });
 
 app.get('/kill', (req, res) => {
   show.kill('SIGINT');
-  isShowing = false;
+  isShowing = false
   res.send('turned out the lights :)');
 });
 
