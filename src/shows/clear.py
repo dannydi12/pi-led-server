@@ -103,20 +103,8 @@ if __name__ == '__main__':
     try:
 
         while True:
-            # print('Color wipe animations.')
-            # colorWipe(strip, Color(255, 0, 0))  # Red wipe
-            # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-            # colorWipe(strip, Color(0, 0, 255))  # Green wipe
-            # print('Theater chase animations.')
-            # theaterChase(strip, Color(127, 127, 127))  # White theater chase
-            # theaterChase(strip, Color(127, 0, 0))  # Red theater chase
-            # theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
-            print('Rainbow animations.1')
-            rainbow(strip)
-            print('Rainbow animations.2')
-            rainbowCycle(strip)
-            print('Rainbow animations.3')
-            theaterChaseRainbow(strip)
+            print('clearing')
+            colorWipe(strip, Color(0, 0, 0), 10)
 
     except KeyboardInterrupt:
         if args.clear:

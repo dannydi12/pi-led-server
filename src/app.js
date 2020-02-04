@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const { spawn } = require('child_process');
 const { NODE_ENV } = require('../config');
 
-let show = spawn('python', ['/home/pi/Projects/pi-led-server/src/shows/other.py'], ['-c']);
+let show = spawn('python', ['/home/pi/Projects/pi-led-server/src/shows/main.py'], ['-c']);
 
 const app = express();
 
@@ -34,7 +34,9 @@ app.use((error, req, res, next) => {
 app.get('/led', (req, res) => {
   const { type } = req.query;
   show.kill('SIGINT')
-  new Promise(resolve => show.on('close', resolve)).then(() => {
+  new Promise(resolve => {
+    show.on('close', resolve)
+  }).then(() => {
     show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/${type}.py`], ['-c']);
     show.stdout.on('data', (data) => {
       console.log(`stdout: ${data}`);
@@ -54,17 +56,11 @@ app.get('/led', (req, res) => {
 
 });
 
-// function kill() {
-//   show.kill('SIGINT')
-//   function delay(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-//   }
-//   delay(3000).then(() => alert('runs after 3 seconds'));
-// }
-
 app.get('/kill', (req, res) => {
-  show.kill('SIGINT');
-  res.send('did it');
+  show.kill('SIGINT')
+  new Promise(resolve => show.on('close', resolve))
+    .then(() => show = spawn('python', [`/home/pi/Projects/pi-led-server/src/shows/clear.py`], ['-c']));
+  res.send('turned out the lights :)');
 });
 
 module.exports = app;
