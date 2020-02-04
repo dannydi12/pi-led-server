@@ -28,7 +28,7 @@ app.use((error, req, res, next) => {
   res.status(500).send(response);
 });
 
-app.get('/', (req, res) => {
+app.get('/led', (req, res) => {
   res.send('Hello, world!');
 });
 
