@@ -1,5 +1,3 @@
-require('./store');
-
 function reset(req, res, next) {
   const clear = new Promise(resolve => {
     if (isShowing) {
