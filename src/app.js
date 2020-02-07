@@ -30,15 +30,18 @@ app.use((error, req, res, next) => {
   res.status(500).send(response);
 });
 
-app.post('/show', (req, res) => {
-  const { type, params } = req.query;
-  show = spawn('python', [`${basePath}/shows/${type}.py`], ['-c']);
-
+app.post('/shows', (req, res) => {
+  const { type, brightness = 200 } = req.query;
+  show = spawn('python', [`${basePath}/shows/${type}.py`, `-b ${brightness}`]);
+  console.log(brightness)
   show.stdout.on('data', (data) => console.log(`stdout: ${data}`));
   show.stderr.on('data', (data) => console.error(`stderr: ${data}`));
-  show.on('close', (code) => console.log(`child process exited with code ${code}`));
-
   isShowing = true
+  show.on('close', (code) => {
+    isShowing = false;
+    console.log(`child process exited with code ${code}`)
+  });
+
   res.send('Hello, world!');
 });
 
