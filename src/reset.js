@@ -1,8 +1,8 @@
 function reset(req, res, next) {
   const clear = new Promise(resolve => {
-    if (isShowing) {
-      show.kill('SIGINT');
-      show.on('close', resolve);
+    if (isDisplaying) {
+      display.kill('SIGINT');
+      display.on('close', resolve);
     }
     else {
       resolve();

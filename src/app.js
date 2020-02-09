@@ -31,14 +31,29 @@ app.use((error, req, res, next) => {
 });
 
 app.post('/shows', (req, res) => {
-  const { type, brightness = 200 } = req.query;
-  show = spawn('python', [`${basePath}/shows/${type}.py`, `-b ${brightness}`]);
+  const { name, brightness = 200 } = req.query;
+  display = spawn('python', [`${basePath}/shows/${name}.py`, `-b ${brightness}`]);
   console.log(brightness)
-  show.stdout.on('data', (data) => console.log(`stdout: ${data}`));
-  show.stderr.on('data', (data) => console.error(`stderr: ${data}`));
-  isShowing = true
-  show.on('close', (code) => {
-    isShowing = false;
+  display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
+  display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
+  isDisplaying = true
+  display.on('close', (code) => {
+    isDisplaying = false;
+    console.log(`child process exited with code ${code}`)
+  });
+
+  res.send('Hello, world!');
+});
+
+app.post('/routines', (req, res) => {
+  const { name, brightness = 200 } = req.query;
+  display = spawn('python', [`${basePath}/routines/${name}.py`, `-b ${brightness}`]);
+  console.log(brightness)
+  display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
+  display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
+  isDisplaying = true
+  display.on('close', (code) => {
+    isDisplaying = false;
     console.log(`child process exited with code ${code}`)
   });
 
@@ -46,8 +61,8 @@ app.post('/shows', (req, res) => {
 });
 
 app.post('/kill', (req, res) => {
-  show.kill('SIGINT');
-  isShowing = false
+  display.kill('SIGINT');
+  isDisplaying = false
   res.send('turned out the lights :)');
 });
 

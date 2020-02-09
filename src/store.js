@@ -2,8 +2,8 @@ const { spawn } = require('child_process');
 
 const basePath = '/home/pi/Projects/pi-led-server/src'
 
-global.isShowing = true;
-global.show = spawn('python', [`${basePath}/shows/main.py`, '-b 200']);
+global.isDisplaying = true;
+global.display = spawn('python', [`${basePath}/shows/main.py`, '-b 20']);
 
 module.exports = {
   basePath
