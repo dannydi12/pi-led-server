@@ -5,52 +5,47 @@ from rpi_ws281x import PixelStrip, Color
 import argparse
 from signal import signal, SIGINT
 
-# import shows because this is a routine template
-import other
+import common
 
-# LED strip configuration:
-LED_COUNT = 150        # Number of LED pixels.
-LED_PIN = 18          # GPIO pin connected to the pixels (18 uses PWM!).
-# LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
-LED_DMA = 10          # DMA channel to use for generating signal (try 10)
-LED_BRIGHTNESS = 200  # Set to 0 for darkest and 255 for brightest
-# True to invert the signal (when using NPN transistor level shift)
+LED_COUNT = 150
+LED_PIN = 18
+LED_FREQ_HZ = 800000
+LED_DMA = 10
+LED_BRIGHTNESS = 200
 LED_INVERT = False
-LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+LED_CHANNEL = 0
 
 def handler(signal_received, frame):
-    colorWipe(strip, Color(0, 0, 0), 10)
+    common.colorWipe(strip, 0, 0, 0, 10)
     print('SIGINT or CTRL-C detected. Exiting gracefully')
     exit(0)
-
-def colorWipe(strip, color, wait_ms=50):
-    """Wipe color across display a pixel at a time."""
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, color)
-        strip.show()
-        time.sleep(wait_ms / 1000.0)
 
 if __name__ == '__main__':
     # signal(SIGINT, handler)
 
-    #Process arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-b', '--brightness', default = 200, help='set brightness (0-255)')
+    parser.add_argument('-l', '--brightness', default = 200, help='set brightness (0-255)')
+    parser.add_argument('-r', '--red', default = 0, help='set red value')
+    parser.add_argument('-g', '--green', default = 0, help='set green value')
+    parser.add_argument('-b', '--blue', default = 0, help='set blue value')
     args = parser.parse_args()
 
-    # Create NeoPixel object with appropriate configuration.
-    strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ,
-                       LED_DMA, LED_INVERT, int(args.brightness), LED_CHANNEL)
-    # Intialize the library (must be called once before other functions).
+    red = int(args.red)
+    green = int(args.green)
+    blue = int(args.blue)
+
+    print('hey')
+
+    strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, int(args.brightness), LED_CHANNEL)
     strip.begin()
+
+    print('hey', red, green, blue)
 
     try:
         while True:
-            other.rainbow(strip)
-            other.rainbowCycle(strip)
-            other.theaterChaseRainbow(strip)
+            common.setColor(strip, red, green, blue)
+            time.sleep(10000)
 
     except KeyboardInterrupt:
         print('provided c')
-        colorWipe(strip, Color(0, 0, 0), 10)
+        common.setColor(strip, 0, 0, 0)
