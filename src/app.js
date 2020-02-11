@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('../config');
-const showRouter = require('./show/showRouter');
+const routinesRouter = require('./routinesRouter/routinesRouter');
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use((error, req, res, next) => {
   res.status(500).send(response);
 });
 
-app.use('/show', showRouter)
+app.use('/routines', routinesRouter)
 
 app.post('/kill', (req, res) => {
   display.kill('SIGINT');

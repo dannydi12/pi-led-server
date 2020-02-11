@@ -4,7 +4,7 @@ const { basePath } = require('../store');
 const reset = require('../reset');
 const validate = require('./validations');
 
-const showRouter = express.Router();
+const routinesRouter = express.Router();
 
 function convertHex(h) {
   let r = 0, g = 0, b = 0;
@@ -22,7 +22,7 @@ function convertHex(h) {
   return {r: +r, g: +g, b: +b} ;
 }
 
-showRouter.route('/')
+routinesRouter.route('/')
   .post(validate, reset, (req, res) => {
     const { name, brightness = 200, color = 'f1c40f' } = req.query;
     const { r, g, b } = convertHex(color)
@@ -37,4 +37,4 @@ showRouter.route('/')
     res.send('Hello, world!');
   });
 
-module.exports = showRouter;
+module.exports = routinesRouter;
