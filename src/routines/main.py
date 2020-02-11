@@ -34,18 +34,15 @@ if __name__ == '__main__':
     green = int(args.green)
     blue = int(args.blue)
 
-    print('hey')
-
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, int(args.brightness), LED_CHANNEL)
     strip.begin()
-
-    print('hey', red, green, blue)
 
     try:
         while True:
             common.setColor(strip, red, green, blue)
             time.sleep(1)
+            common.colorWipe(strip, blue, green, red)
+            time.sleep(1)
 
     except KeyboardInterrupt:
-        print('provided c')
         common.setColor(strip, 0, 0, 0)

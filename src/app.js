@@ -46,25 +46,10 @@ function convertHex(h) {
   return {r: +r, g: +g, b: +b} ;
 }
 
-app.post('/shows', (req, res) => {
+app.post('/routines', (req, res) => {
   const { name, brightness = 200, color = 'f1c40f' } = req.query;
   const {r, g, b} = convertHex(color)
-  display = spawn('python', [`${basePath}/shows/${name}.py`, `-l ${brightness}`, `-r ${r}`, `-g ${g}`, `-b ${b}`]);
-  display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
-  display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
-  isDisplaying = true
-  display.on('close', (code) => {
-    isDisplaying = false;
-    console.log(`child process exited with code ${code}`)
-  });
-
-  res.send('Hello, world!');
-});
-
-app.post('/routines', (req, res) => {
-  const { name, brightness = 200 } = req.query;
-  display = spawn('python', [`${basePath}/routines/${name}.py`, `-b ${brightness}`]);
-  console.log(brightness)
+  display = spawn('python', [`${basePath}/routines/${name}.py`, `-l ${brightness}`, `-r ${r}`, `-g ${g}`, `-b ${b}`]);
   display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
   display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
   isDisplaying = true
