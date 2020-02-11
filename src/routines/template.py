@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', '--brightness', default = 200, help='set brightness (0-255)')
-    parser.add_argument('-r', '--red', default = 0, help='set red value')
+    parser.add_argument('-r', '--red', default = 255, help='set red value')
     parser.add_argument('-g', '--green', default = 0, help='set green value')
     parser.add_argument('-b', '--blue', default = 0, help='set blue value')
     args = parser.parse_args()
@@ -38,11 +38,8 @@ if __name__ == '__main__':
     strip.begin()
 
     try:
-        while True:
-            common.setColor(strip, red, green, blue)
-            time.sleep(1)
-            common.colorWipe(strip, blue, green, red)
-            time.sleep(1)
+        #while True:
+        common.setColor(strip, red, green, blue)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)
