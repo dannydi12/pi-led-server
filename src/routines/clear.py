@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from rpi_ws281x import PixelStrip, Color
-
 import common
 
 LED_COUNT = 150
