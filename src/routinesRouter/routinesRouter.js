@@ -3,6 +3,7 @@ const { spawn } = require('child_process');
 const { basePath } = require('../store');
 const reset = require('../reset');
 const validate = require('./validations');
+const fs = require('fs');
 
 const routinesRouter = express.Router();
 
@@ -35,6 +36,10 @@ routinesRouter.route('/')
       console.log(`child process exited with code ${code}`)
     });
     res.send('Hello, world!');
+  })
+  .get((req, res) => {
+    const files = fs.readdirSync(`${basePath}/routines`).filter(file => file.search(/.py$/) !== -1).map(file => file.slice(0, file.indexOf('.')))
+    res.send(files)
   });
 
 module.exports = routinesRouter;
