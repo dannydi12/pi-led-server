@@ -4,10 +4,10 @@ const fs = require('fs');
 function validate(req, res, next) {
   const { name, brightness, color } = req.query;
   if (!name) {
-    return res.status(400).send('Please send a show name')
+    return res.status(400).send('Please provide a routine name')
   }
   if (!fs.readdirSync(`${basePath}/routines`).find(file => file === `${name}.py`)) {
-    return res.status(400).send('Please send a valid show name')
+    return res.status(400).send('Please send a valid routine name. GET /routines for a full list of available routines')
   }
   if (brightness) {
     if (!Number(brightness)) {
