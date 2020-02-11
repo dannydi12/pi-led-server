@@ -44,7 +44,7 @@ if __name__ == '__main__':
     try:
         while True:
             common.setColor(strip, red, green, blue)
-            time.sleep(10000)
+            time.sleep(1)
 
     except KeyboardInterrupt:
         print('provided c')
