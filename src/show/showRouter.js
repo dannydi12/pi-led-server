@@ -2,6 +2,7 @@ const express = require('express');
 const { spawn } = require('child_process');
 const { basePath } = require('../store');
 const reset = require('../reset');
+const validate = require('./validations');
 
 const showRouter = express.Router();
 
@@ -22,7 +23,7 @@ function convertHex(h) {
 }
 
 showRouter.route('/')
-  .post(reset, (req, res) => {
+  .post(validate, reset, (req, res) => {
     const { name, brightness = 200, color = 'f1c40f' } = req.query;
     const { r, g, b } = convertHex(color)
     display = spawn('python', [`${basePath}/routines/${name}.py`, `-l ${brightness}`, `-r ${r}`, `-g ${g}`, `-b ${b}`]);

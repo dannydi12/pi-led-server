@@ -32,7 +32,7 @@ app.use('/show', showRouter)
 app.post('/kill', (req, res) => {
   display.kill('SIGINT');
   isDisplaying = false
-  res.send('turned out the lights :)');
+  res.send('Turned out the lights :)');
 });
 
 module.exports = app;
