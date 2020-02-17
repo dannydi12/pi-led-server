@@ -2,6 +2,7 @@
 
 import time
 from rpi_ws281x import PixelStrip, Color
+import colorsys
 
 # Shows
 def colorWipe(strip, r, g, b, wait_ms=50):
@@ -10,6 +11,24 @@ def colorWipe(strip, r, g, b, wait_ms=50):
         strip.setPixelColor(i, Color(r, g, b))
         strip.show()
         time.sleep(wait_ms / 1000.0)
+
+def fadeIn(strip, r, g, b, l):
+    """Fade in color"""
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, Color(r, g, b))
+    for i in range(l):
+        strip.setBrightness(i)
+        strip.show()
+        time.sleep(0.001)
+
+def fadeOut(strip, r, g, b, l):
+    """Fade out color"""
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, Color(r, g, b))
+    for i in range(l, -1, -1):
+        strip.setBrightness(i)
+        strip.show()
+        time.sleep(0.001)
 
 def setColor(strip, r, g, b):
     """Wipe color across display a pixel at a time."""
