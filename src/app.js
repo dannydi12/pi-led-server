@@ -29,10 +29,10 @@ app.use((error, req, res, next) => {
 
 app.use('/routines', routinesRouter)
 
-app.post('/kill', (req, res) => {
+app.delete('/kill', (req, res) => {
   display.kill('SIGINT');
   isDisplaying = false
-  res.send('Turned out the lights :)');
+  res.status(201).end()
 });
 
 app.get('*', (req, res) => {
