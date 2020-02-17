@@ -6,7 +6,7 @@ function validate(req, res, next) {
   if (!name) {
     return res.status(400).send('Please provide a routine name')
   }
-  if (!fs.readdirSync(`${basePath}/routines`).find(file => file === `${name}.py`)) {
+  if (!fs.readdirSync(`${basePath}/src/routines`).find(file => file === `${name}.py`)) {
     return res.status(400).send('Please send a valid routine name. GET /routines for a full list of available routines')
   }
   if (brightness) {

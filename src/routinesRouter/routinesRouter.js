@@ -27,7 +27,8 @@ routinesRouter.route('/')
   .post(validate, reset, (req, res) => {
     const { name, brightness = 200, color = 'f1c40f' } = req.query;
     const { r, g, b } = convertHex(color)
-    display = spawn('python', [`${basePath}/routines/${name}.py`, `-l ${brightness}`, `-r ${r}`, `-g ${g}`, `-b ${b}`]);
+
+    display = spawn('python', [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${r}`, `-g ${g}`, `-b ${b}`]);
     display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
     display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
     isDisplaying = true
@@ -35,10 +36,15 @@ routinesRouter.route('/')
       isDisplaying = false;
       console.log(`child process exited with code ${code}`)
     });
-    res.send('Hello, world!');
+
+    const response = {
+      name,
+      brightness
+    }
+    res.json(response);
   })
   .get((req, res) => {
-    const files = fs.readdirSync(`${basePath}/routines`).filter(file => file.search(/.py$/) !== -1).map(file => file.slice(0, file.indexOf('.')))
+    const files = fs.readdirSync(`${basePath}/src/routines`).filter(file => file.search(/.py$/) !== -1).map(file => file.slice(0, file.indexOf('.')))
     res.send(files)
   });
 
