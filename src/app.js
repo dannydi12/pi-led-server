@@ -35,4 +35,8 @@ app.post('/kill', (req, res) => {
   res.send('Turned out the lights :)');
 });
 
+app.get('*', (req, res) => {
+  res.status(404).end()
+})
+
 module.exports = app;
