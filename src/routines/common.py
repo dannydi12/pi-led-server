@@ -12,25 +12,25 @@ def colorWipe(strip, r, g, b, wait_ms=50):
         strip.show()
         time.sleep(wait_ms / 1000.0)
 
-def fadeIn(strip, r, g, b, l):
+def fadeIn(strip, r, g, b, l, wait_ms=0.005):
     """Fade in color"""
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, Color(r, g, b))
-    for i in range(l):
-        strip.setBrightness(i)
+    for i in range(255):
+        hsv = colorsys.rgb_to_hsv(r, g, b)
+        rgb = colorsys.hsv_to_rgb(hsv[0], hsv[1], i)
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, Color(int(rgb[0]), int(rgb[1]), int(rgb[2])))
         strip.show()
-        time.sleep(0.005)
-        # time.sleep((0.0005 * 255) / l)
+        time.sleep(wait_ms)
 
-def fadeOut(strip, r, g, b, l):
+def fadeOut(strip, r, g, b, l, wait_ms=0.001):
     """Fade out color"""
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, Color(r, g, b))
-    for i in range(l, -1, -1):
-        strip.setBrightness(i)
+    for i in range(255, -1, -1):
+        hsv = colorsys.rgb_to_hsv(r, g, b)
+        rgb = colorsys.hsv_to_rgb(hsv[0], hsv[1], i)
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, Color(int(rgb[0]), int(rgb[1]), int(rgb[2])))
         strip.show()
-        time.sleep(0.005)
-        # time.sleep((0.0005 * 255) / l)
+        time.sleep(wait_ms)
 
 def setColor(strip, r, g, b):
     """Wipe color across display a pixel at a time."""

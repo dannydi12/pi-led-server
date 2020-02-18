@@ -23,11 +23,11 @@ if __name__ == '__main__':
 
     try:
         while True:
-          common.fadeIn(strip, red, green, blue, brightness)
-          common.fadeOut(strip, red, green, blue, brightness)
-        #   common.fadeIn(strip, red, green, blue, brightness)
-        #   common.fadeOut(strip, red, green, blue, brightness)
-          time.sleep(1)
+          common.fadeIn(strip, red, green, blue, brightness, 0)
+          common.fadeOut(strip, red, green, blue, brightness, 0)
+          common.fadeIn(strip, red, green, blue, brightness, 0)
+          common.fadeOut(strip, red, green, blue, brightness, 0)
+          time.sleep(4)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)
