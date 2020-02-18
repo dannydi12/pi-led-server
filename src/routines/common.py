@@ -19,7 +19,8 @@ def fadeIn(strip, r, g, b, l):
     for i in range(l):
         strip.setBrightness(i)
         strip.show()
-        time.sleep(0.001)
+        time.sleep(0.005)
+        # time.sleep((0.0005 * 255) / l)
 
 def fadeOut(strip, r, g, b, l):
     """Fade out color"""
@@ -28,7 +29,8 @@ def fadeOut(strip, r, g, b, l):
     for i in range(l, -1, -1):
         strip.setBrightness(i)
         strip.show()
-        time.sleep(0.001)
+        time.sleep(0.005)
+        # time.sleep((0.0005 * 255) / l)
 
 def setColor(strip, r, g, b):
     """Wipe color across display a pixel at a time."""

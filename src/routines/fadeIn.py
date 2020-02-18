@@ -24,8 +24,9 @@ if __name__ == '__main__':
     try:
         while True:
           common.fadeIn(strip, red, green, blue, brightness)
-          time.sleep(1)
           common.fadeOut(strip, red, green, blue, brightness)
+        #   common.fadeIn(strip, red, green, blue, brightness)
+        #   common.fadeOut(strip, red, green, blue, brightness)
           time.sleep(1)
 
     except KeyboardInterrupt:
