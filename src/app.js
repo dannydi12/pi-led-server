@@ -17,7 +17,7 @@ app.use(errorHandler);
 app.use('/routines', routinesRouter)
 
 app.delete('/kill', (req, res) => {
-  display.kill('SIGINT');
+  req.app.get('display').kill('SIGINT');
   res.status(201).end()
 });
 

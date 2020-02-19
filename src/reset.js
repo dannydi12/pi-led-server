@@ -1,8 +1,11 @@
 function reset(req, res, next) {
   const clear = new Promise(resolve => {
-    if (display.exitCode == null) {
-      display.kill('SIGINT');
-      display.on('close', resolve);
+    const led = {
+      display: req.app.get('display')
+    }
+    if (led.display.exitCode == null) {
+      led.display.kill('SIGINT');
+      led.display.on('close', resolve);
     }
     else {
       resolve();

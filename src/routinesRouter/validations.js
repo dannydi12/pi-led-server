@@ -1,4 +1,3 @@
-const { basePath } = require('../store');
 const allRoutines = require('../routines/routine-manifest');
 
 function validate(req, res, next) {

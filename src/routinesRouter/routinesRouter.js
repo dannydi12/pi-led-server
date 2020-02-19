@@ -1,6 +1,5 @@
 const express = require('express');
 const { spawn } = require('child_process');
-const { basePath } = require('../store');
 const reset = require('../reset');
 const validate = require('./validations');
 const allRoutines = require('../routines/routine-manifest');
@@ -69,11 +68,10 @@ routinesRouter.route('/')
     const rgb = setColor(hex, colorType, r, g, b)
     const normalizedName = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
     const args = [allRoutines[normalizedName].path, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`].filter(argument => argument.search('undefined') === -1)
-
-    display = spawn('python', args);
-    display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
-    display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
-    display.on('close', (code) => {
+    req.app.set('display', spawn('python', args))
+    req.app.get('display').stdout.on('data', (data) => console.log(`stdout: ${data}`));
+    req.app.get('display').stderr.on('data', (data) => console.error(`stderr: ${data}`));
+    req.app.get('display').on('close', (code) => {
       console.log(`child process exited with code ${code}`)
     });
 
