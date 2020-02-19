@@ -1,12 +1,12 @@
 const { basePath } = require('../store');
-const fs = require('fs');
+const allRoutines = require('../routines/routine-manifest');
 
 function validate(req, res, next) {
   const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
   if (!name) {
     return res.status(400).send('Please provide a routine name')
   }
-  if (!fs.readdirSync(`${basePath}/src/routines`).find(file => file === `${name}.py`)) {
+  if (!(allRoutines[name.charAt(0).toUpperCase() + name.toLowerCase().slice(1)])) {
     return res.status(400).send('Please send a valid routine name. GET /routines for a full list of available routines')
   }
   if (delay) {

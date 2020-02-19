@@ -3,7 +3,7 @@ const { spawn } = require('child_process');
 const { basePath } = require('../store');
 const reset = require('../reset');
 const validate = require('./validations');
-const fs = require('fs');
+const allRoutines = require('../routines/routine-manifest');
 
 const routinesRouter = express.Router();
 
@@ -67,10 +67,10 @@ routinesRouter.route('/')
     const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
 
     const rgb = setColor(hex, colorType, r, g, b)
+    const normalizedName = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
+    const args = [allRoutines[normalizedName].path, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`].filter(argument => argument.search('undefined') === -1)
 
-    const args = [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`]
-
-    display = spawn('python', args.filter(argument => argument.search('undefined') === -1));
+    display = spawn('python', args);
     display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
     display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
     isDisplaying = true
@@ -84,8 +84,16 @@ routinesRouter.route('/')
     res.json(response);
   })
   .get((req, res) => {
-    const files = fs.readdirSync(`${basePath}/src/routines`).filter(file => file.search(/.py$/) !== -1).map(file => file.slice(0, file.indexOf('.')))
-    res.send(files)
+
+    const routines = Object.keys(allRoutines).map(routine => {
+      return {
+        name: routine,
+        ...allRoutines[routine],
+        path: undefined
+      }
+    })
+
+    res.send(routines)
   });
 
 module.exports = routinesRouter;
