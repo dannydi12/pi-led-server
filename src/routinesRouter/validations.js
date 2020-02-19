@@ -1,11 +1,12 @@
 const allRoutines = require('../routines/routine-manifest');
+const { normalizeName } = require('./helper');
 
 function validate(req, res, next) {
   const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
   if (!name) {
     return res.status(400).send('Please provide a routine name')
   }
-  if (!(allRoutines[name.charAt(0).toUpperCase() + name.toLowerCase().slice(1)])) {
+  if (!(allRoutines[normalizeName(name)])) {
     return res.status(400).send('Please send a valid routine name. GET /routines for a full list of available routines')
   }
   if (delay) {
