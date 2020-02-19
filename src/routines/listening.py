@@ -24,12 +24,7 @@ if __name__ == '__main__':
     strip.begin()
 
     try:
-        for i in range(2):
-          common.fadeIn(strip, red, green, blue, brightness, 0)
-          common.fadeOut(strip, red, green, blue, brightness, 0)
-          common.fadeIn(strip, red, green, blue, brightness, 0)
-          common.fadeOut(strip, red, green, blue, brightness, 0)
-          time.sleep(4)
+        common.fadeIn(strip, red, green, blue, brightness, 0)
 
     except KeyboardInterrupt:
-        common.setColor(strip, 0, 0, 0)
+        common.colorWipe(strip, 0, 0, 0)
