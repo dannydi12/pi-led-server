@@ -73,9 +73,7 @@ routinesRouter.route('/')
     display = spawn('python', args);
     display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
     display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
-    isDisplaying = true
     display.on('close', (code) => {
-      isDisplaying = false;
       console.log(`child process exited with code ${code}`)
     });
 

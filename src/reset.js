@@ -1,6 +1,6 @@
 function reset(req, res, next) {
   const clear = new Promise(resolve => {
-    if (isDisplaying) {
+    if (display.exitCode == null) {
       display.kill('SIGINT');
       display.on('close', resolve);
     }

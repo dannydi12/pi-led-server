@@ -18,7 +18,6 @@ app.use('/routines', routinesRouter)
 
 app.delete('/kill', (req, res) => {
   display.kill('SIGINT');
-  isDisplaying = false
   res.status(201).end()
 });
 
