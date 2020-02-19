@@ -20,7 +20,7 @@ function convertHex(h) {
     g = "0x" + h[2] + h[3];
     b = "0x" + h[4] + h[5];
   }
-  return {r: +r, g: +g, b: +b} ;
+  return { r: +r, g: +g, b: +b };
 }
 
 routinesRouter.route('/')
@@ -32,13 +32,13 @@ routinesRouter.route('/')
       g: undefined,
       b: undefined
     }
-    if(color) {
+    if (color) {
       rgb = convertHex(color);
     }
 
-    const args = [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`].filter(argument => argument.search('undefined') === -1)
+    const args = [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`]
 
-    display = spawn('python', args);
+    display = spawn('python', args.filter(argument => argument.search('undefined') === -1));
     display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
     display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
     isDisplaying = true
