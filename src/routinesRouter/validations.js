@@ -2,7 +2,7 @@ const { basePath } = require('../store');
 const fs = require('fs');
 
 function validate(req, res, next) {
-  const { name, brightness, color, delay } = req.query;
+  const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
   if (!name) {
     return res.status(400).send('Please provide a routine name')
   }
@@ -25,9 +25,23 @@ function validate(req, res, next) {
       return res.status(400).send('Brightness must be between 0 and 255')
     }
   }
-  if (color) {
-    if (color.search(/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g) === -1) {
+  if (colorType === 'hex') {
+    if (!hex) {
+      return res.status(400).send('Hex must be defined')
+    }
+    if (hex.search(/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g) === -1) {
       return res.status(400).send('Color must be a hexidecimal without the \'#\'. Ex: 5f27cd')
+    }
+  }
+  if (colorType === 'rgb') {
+    if (!r || !g || !b) {
+      return res.status(400).send('RGB values must be defined. Ex: r=23 g=240 b=5')
+    }
+
+    for (color of [r, g, b]) {
+      if (!(Number(color) >= 0 && Number(color) <= 255)) {
+        return res.status(400).send(`Color "${[color]}" must be an rgb value within 0 - 255. Ex: r=23 g=240 b=5`)
+      }
     }
   }
 

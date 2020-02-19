@@ -23,18 +23,31 @@ function convertHex(h) {
   return { r: +r, g: +g, b: +b };
 }
 
-routinesRouter.route('/')
-  .post(validate, reset, (req, res) => {
-    const { name, brightness, color, delay } = req.query;
-
-    let rgb = {
+function setColor(hex, colorType, r, g, b) {
+  if (colorType === 'hex') {
+    return convertHex(hex);
+  }
+  else if (colorType === 'rgb') {
+    return {
+      r,
+      g,
+      b
+    }
+  }
+  else {
+    return {
       r: undefined,
       g: undefined,
       b: undefined
     }
-    if (color) {
-      rgb = convertHex(color);
-    }
+  }
+}
+
+routinesRouter.route('/')
+  .post(validate, reset, (req, res) => {
+    const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
+
+    const rgb = setColor(hex, colorType, r, g, b)
 
     const args = [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`]
 
