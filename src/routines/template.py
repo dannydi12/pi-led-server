@@ -11,11 +11,13 @@ if __name__ == '__main__':
     parser.add_argument('-r', '--red', default = 255, help='set red value')
     parser.add_argument('-g', '--green', default = 0, help='set green value')
     parser.add_argument('-b', '--blue', default = 0, help='set blue value')
+    parser.add_argument('-d', '--delay', default = 0, help='set delay in milliseconds')
     args = parser.parse_args()
 
     red = int(args.red)
     green = int(args.green)
     blue = int(args.blue)
+    delay = int(args.delay)
 
     strip = config.setStrip(int(args.brightness))
     strip.begin()
