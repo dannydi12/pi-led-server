@@ -43,6 +43,25 @@ function setColor(hex, colorType, r, g, b) {
   }
 }
 
+function makeResponse(name, brightness, hex, colorType, r, g, b, delay) {
+  const response = {
+    name,
+    brightness,
+    colorType,
+    delay
+  }
+  if(colorType === 'hex') {
+    response.colorType = colorType;
+    response.hex = hex;
+  }
+  if(colorType === 'rgb') {
+    response.colorType = colorType;
+    response.rgb = [r, g, b];
+  }
+
+  return response;
+}
+
 routinesRouter.route('/')
   .post(validate, reset, (req, res) => {
     const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
@@ -60,10 +79,8 @@ routinesRouter.route('/')
       console.log(`child process exited with code ${code}`)
     });
 
-    const response = {
-      name,
-      brightness
-    }
+    const response = makeResponse(name, brightness, hex, colorType, r, g, b, delay);
+
     res.json(response);
   })
   .get((req, res) => {
