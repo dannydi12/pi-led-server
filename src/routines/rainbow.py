@@ -2,8 +2,8 @@
 
 import time
 import argparse
-import common
-import config
+from lib import common
+from lib import config
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

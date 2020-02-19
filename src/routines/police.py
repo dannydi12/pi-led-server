@@ -3,8 +3,8 @@
 import time
 from rpi_ws281x import PixelStrip, Color
 import argparse
-import common
-import config
+from lib import common
+from lib import config
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

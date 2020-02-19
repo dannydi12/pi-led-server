@@ -2,8 +2,8 @@
 
 import time
 import argparse
-import common
-import config
+from lib import common
+from lib import config
 from random import randint, random
 
 if __name__ == '__main__':
@@ -12,11 +12,11 @@ if __name__ == '__main__':
     parser.add_argument('-r', '--red', default = 255, help='set red value')
     parser.add_argument('-g', '--green', default = 0, help='set green value')
     parser.add_argument('-b', '--blue', default = 0, help='set blue value')
-    parser.add_argument('-d', '--delay', default = 0, help='set delay in milliseconds')
+    parser.add_argument('-d', '--delay', default = 1000, help='set delay in milliseconds')
     args = parser.parse_args()
 
     brightness= int(args.brightness)
-    delay = int(args.delay)
+    delay = int(args.delay) / 1000.0
 
     strip = config.setStrip(int(args.brightness))
     strip.begin()

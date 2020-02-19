@@ -2,8 +2,8 @@
 
 import time
 import argparse
-import common
-import config
+from lib import common
+from lib import config
 from random import randint, random
 
 if __name__ == '__main__':
