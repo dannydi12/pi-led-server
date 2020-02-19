@@ -25,10 +25,20 @@ function convertHex(h) {
 
 routinesRouter.route('/')
   .post(validate, reset, (req, res) => {
-    const { name, brightness = 200, color = 'f1c40f' } = req.query;
-    const { r, g, b } = convertHex(color)
+    const { name, brightness, color, delay } = req.query;
 
-    display = spawn('python', [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${r}`, `-g ${g}`, `-b ${b}`]);
+    let rgb = {
+      r: undefined,
+      g: undefined,
+      b: undefined
+    }
+    if(color) {
+      rgb = convertHex(color);
+    }
+
+    const args = [`${basePath}/src/routines/${name}.py`, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`].filter(argument => argument.search('undefined') === -1)
+
+    display = spawn('python', args);
     display.stdout.on('data', (data) => console.log(`stdout: ${data}`));
     display.stderr.on('data', (data) => console.error(`stderr: ${data}`));
     isDisplaying = true
