@@ -54,6 +54,35 @@ def setColor(strip, r, g, b):
 
     strip.show()
 
+def twinkle(strip, r, g, b, seconds):
+    """Twinkle twinkle little star."""
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(randint(0, strip.numPixels()), Color(r, g, b))
+        for i in range(strip.numPixels() / 2):
+            rgb = randomRGB()
+            strip.setPixelColor(randint(0, strip.numPixels()), Color(0, 0, 0))
+        strip.show()
+        time.sleep(seconds)
+
+def randomTwinkle(strip, seconds):
+    """Twinkle twinkle little star but with random colors!"""
+    for i in range(strip.numPixels()):
+        rgb = randomRGB()
+        strip.setPixelColor(randint(0, strip.numPixels()), Color(rgb[0], rgb[1], rgb[2]))
+        for i in range(strip.numPixels() / 2):
+            rgb = randomRGB()
+            strip.setPixelColor(randint(0, strip.numPixels()), Color(0, 0, 0))
+        strip.show()
+        time.sleep(seconds)
+
+def randomColorFill(strip, seconds):
+    """Randomly fills display with random colors. Truly unpredictable."""
+    for i in range(strip.numPixels()):
+        rgb = randomRGB()
+        strip.setPixelColor(randint(0, strip.numPixels()), Color(rgb[0], rgb[1], rgb[2]))
+        strip.show()
+        time.sleep(seconds)
+
 def theaterChase(strip, r, g, b, seconds=50, iterations=10):
     """Movie theater light style chaser animation."""
     for j in range(iterations):

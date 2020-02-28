@@ -46,6 +46,21 @@ module.exports = {
     description: 'Random colors will wipe across the display. Soothing.',
     customOptions: ['brightness', 'color', 'delay'],
   },
+  'Random Color Fill': {
+    path: `${BASEPATH}/src/routines/random-color-fill.py`,
+    description: 'Do you long to feel like a child again? Well, this is the routine for you.',
+    customOptions: ['brightness', 'delay'],
+  },
+  'Twinkle': {
+    path: `${BASEPATH}/src/routines/twinkle.py`,
+    description: 'A routine to accompany the all-time record-breaking hit.',
+    customOptions: ['brightness', 'color', 'delay'],
+  },
+  'Random Twinkle': {
+    path: `${BASEPATH}/src/routines/random-twinkle.py`,
+    description: 'A routine to accompany the all-time record-breaking hit while in a different state of mind.',
+    customOptions: ['brightness', 'delay'],
+  },
   'Strobe': {
     path: `${BASEPATH}/src/routines/strobe.py`,
     description: 'Strobe lights. Can be customized to any color. Obvious epilepsy warning.',
