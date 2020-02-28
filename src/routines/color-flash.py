@@ -4,7 +4,6 @@ import time
 import argparse
 from lib import common
 from lib import config
-from random import randint, random
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -23,12 +22,7 @@ if __name__ == '__main__':
 
     try:
         while True:
-            r = randint(0, randint(0, 255))
-            g = randint(0, randint(0, 255))
-            b = randint(0, randint(0, 255))
-            rgb = [r, g, b]
-            rgb[randint(0,2)] = 255
-            rgb[randint(0,2)] = 0
+            rgb = common.randomRGB()
             
             common.setColor(strip, rgb[0], rgb[1], rgb[2])
             time.sleep(delay)

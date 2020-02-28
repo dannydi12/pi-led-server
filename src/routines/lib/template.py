@@ -2,8 +2,8 @@
 
 import time
 import argparse
-import common
-import config
+from lib import common
+from lib import config
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -17,9 +17,10 @@ if __name__ == '__main__':
     red = int(args.red)
     green = int(args.green)
     blue = int(args.blue)
-    delay = int(args.delay)
+    delay = int(args.delay) / 1000.0
+    brightness = int(args.brightness)
 
-    strip = config.setStrip(int(args.brightness))
+    strip = config.setStrip(brightness)
     strip.begin()
 
     try:

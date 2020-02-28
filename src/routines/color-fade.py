@@ -16,19 +16,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     brightness= int(args.brightness)
-    delay = int(args.delay) / 1000
+    delay = int(args.delay) / 1000.0
 
     strip = config.setStrip(int(args.brightness))
     strip.begin()
 
     try:
         while True:
-            r = randint(0, randint(0, 255))
-            g = randint(0, randint(0, 255))
-            b = randint(0, randint(0, 255))
-            rgb = [r, g, b]
-            rgb[randint(0,2)] = 255
-            rgb[randint(0,2)] = 0
+            rgb = common.randomRGB()
             
             common.fadeIn(strip, rgb[0], rgb[1], rgb[2], brightness)
             common.fadeOut(strip, rgb[0], rgb[1], rgb[2], brightness)
