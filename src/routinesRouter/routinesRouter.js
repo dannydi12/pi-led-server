@@ -8,7 +8,7 @@ const { normalizeName, setColor, makeResponse } = require('./helper');
 const routinesRouter = express.Router();
 
 routinesRouter.route('/')
-  .post(validate, reset, (req, res) => {
+  .put(validate, reset, (req, res) => {
     const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
 
     const rgb = setColor(hex, colorType, r, g, b)
