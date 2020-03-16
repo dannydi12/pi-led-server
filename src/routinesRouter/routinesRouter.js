@@ -12,7 +12,8 @@ routinesRouter.route('/')
     const { name, brightness, hex, colorType, r, g, b, delay } = req.query;
 
     const rgb = setColor(hex, colorType, r, g, b)
-    const args = [allRoutines[normalizeName(name)].path, `-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`].filter(argument => argument.search('undefined') === -1)
+    const options = [`-l ${brightness}`, `-r ${rgb.r}`, `-g ${rgb.g}`, `-b ${rgb.b}`, `-d ${delay}`].filter(argument => argument.search('undefined') === -1);
+    const args = [allRoutines[normalizeName(name)].path, ...options]
     req.app.set('display', spawn('python', args))
     req.app.get('display').stdout.on('data', (data) => console.log(`stdout: ${data}`));
     req.app.get('display').stderr.on('data', (data) => console.error(`stderr: ${data}`));
