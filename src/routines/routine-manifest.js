@@ -71,4 +71,9 @@ module.exports = {
     description: 'Please stand still while the system invasively scans your body and deepest desires.',
     customOptions: ['brightness', 'color', 'delay'],
   },
+  'Colorful Scanner': {
+    path: `${BASEPATH}/src/routines/colorful-scanner.py`,
+    description: 'Please stand still while the system invasively scans your body and deepest desires (child edition).',
+    customOptions: ['brightness', 'delay'],
+  },
 }
