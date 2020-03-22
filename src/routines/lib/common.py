@@ -83,6 +83,26 @@ def randomColorFill(strip, seconds):
         strip.show()
         time.sleep(seconds)
 
+def scanner(strip, r, g, b, seconds=0.5, eyeSize=10):
+    """Simulates the eye of Cylon"""
+    setColor(strip, 0, 0, 0)
+    for i in range(strip.numPixels() - eyeSize):
+        strip.setPixelColor(i, Color(0, 0, 0))
+        for j in range(1, eyeSize):
+            strip.setPixelColor(i + j, Color(r, g, b))
+        strip.show()
+        time.sleep(seconds)
+
+def scannerBack(strip, r, g, b, seconds=0.5, eyeSize=10):
+    """Simulates the eye of Cylon but going back"""
+    setColor(strip, 0, 0, 0)
+    for i in range(strip.numPixels() - eyeSize, 0, -1):
+        for j in range(1, eyeSize):
+            strip.setPixelColor(i + j, Color(r, g, b))
+        strip.setPixelColor(i + j, Color(0, 0, 0))
+        strip.show()
+        time.sleep(seconds)
+
 def theaterChase(strip, r, g, b, seconds=50, iterations=10):
     """Movie theater light style chaser animation."""
     for j in range(iterations):

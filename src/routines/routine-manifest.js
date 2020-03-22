@@ -66,4 +66,9 @@ module.exports = {
     description: 'Strobe lights. Can be customized to any color. Obvious epilepsy warning.',
     customOptions: ['color'],
   },
+  'Scanner': {
+    path: `${BASEPATH}/src/routines/scanner.py`,
+    description: 'Please stand still while the system invasively scans your body and deepest desires.',
+    customOptions: ['brightness', 'color', 'delay'],
+  },
 }
