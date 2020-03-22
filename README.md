@@ -48,7 +48,7 @@ pip --version
 
 That should be all that's needed to get everything installed. Just run `sudo npm start` to turn on the server. 
 
-Note: the server startup command requires the `sudo` because it needs root privileges to access the LED strip.
+**Note: the server startup command requires the `sudo` because it needs root privileges to access the LED strip.**
 
 ## Usage
 
