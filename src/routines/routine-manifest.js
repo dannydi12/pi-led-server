@@ -1,6 +1,11 @@
 const { BASEPATH } = require('../../config');
 
 module.exports = {
+  'Show Off': {
+    path: `${BASEPATH}/src/routines/showoff.py`,
+    description: 'Wanna show this off?',
+    customOptions: []
+  },
   'Notify': {
     path: `${BASEPATH}/src/routines/notify.py`,
     description: 'Light swells twice to notify user of something.',

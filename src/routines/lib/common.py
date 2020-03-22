@@ -64,7 +64,7 @@ def twinkle(strip, r, g, b, seconds):
         strip.show()
         time.sleep(seconds)
 
-def randomTwinkle(strip, seconds):
+def randomTwinkle(strip, seconds=50/1000.0):
     """Twinkle twinkle little star but with random colors!"""
     for i in range(strip.numPixels()):
         rgb = randomRGB()
@@ -75,7 +75,7 @@ def randomTwinkle(strip, seconds):
         strip.show()
         time.sleep(seconds)
 
-def randomColorFill(strip, seconds):
+def randomColorFill(strip, seconds=50/1000.0):
     """Randomly fills display with random colors. Truly unpredictable."""
     for i in range(strip.numPixels()):
         rgb = randomRGB()
