@@ -81,4 +81,9 @@ module.exports = {
     description: 'Please stand still while the system invasively scans your body and deepest desires (child edition).',
     customOptions: ['brightness', 'delay'],
   },
+  'Wake Up': {
+    path: `${BASEPATH}/src/routines/wakeup.py`,
+    description: 'This could be used to wake you up.',
+    customOptions: ['brightness', 'color'],
+  },
 }
