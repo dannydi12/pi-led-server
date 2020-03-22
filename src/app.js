@@ -14,16 +14,16 @@ app.use(helmet());
 app.use(cors());
 app.use(errorHandler);
 
-app.use('/routines', routinesRouter)
+app.use('/routines', routinesRouter);
 
 app.delete('/kill', (req, res) => {
   req.app.get('display').kill('SIGINT');
-  res.status(201).end()
+  res.status(201).end();
 });
 
 app.get('*', (req, res) => {
-  res.status(404).end()
-})
+  res.status(404).end();
+});
 
 app.use(errorHandler);
 

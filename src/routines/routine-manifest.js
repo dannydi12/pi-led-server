@@ -4,29 +4,29 @@ module.exports = {
   'Show Off': {
     path: `${BASEPATH}/src/routines/showoff.py`,
     description: 'Wanna show this off?',
-    customOptions: []
+    customOptions: [],
   },
-  'Notify': {
+  Notify: {
     path: `${BASEPATH}/src/routines/notify.py`,
     description: 'Light swells twice to notify user of something.',
-    customOptions: ['brightness', 'color', 'delay']
+    customOptions: ['brightness', 'color', 'delay'],
   },
-  'Police': {
+  Police: {
     path: `${BASEPATH}/src/routines/police.py`,
     description: 'Simulates police car lights.',
-    customOptions: ['brightness', 'delay']
+    customOptions: ['brightness', 'delay'],
   },
-  'Siren': {
+  Siren: {
     path: `${BASEPATH}/src/routines/siren.py`,
     description: 'Simulates siren lights.',
-    customOptions: ['brightness', 'color', 'delay']
+    customOptions: ['brightness', 'color', 'delay'],
   },
-  'Rainbow': {
+  Rainbow: {
     path: `${BASEPATH}/src/routines/rainbow.py`,
     description: 'Double rainbow all the way.',
-    customOptions: ['brightness']
+    customOptions: ['brightness'],
   },
-  'Listening': {
+  Listening: {
     path: `${BASEPATH}/src/routines/listening.py`,
     description: 'Can be used to show a digital assistant is awaiting a command.',
     customOptions: ['brightness', 'color'],
@@ -39,7 +39,7 @@ module.exports = {
   'Color Fade': {
     path: `${BASEPATH}/src/routines/color-fade.py`,
     description: 'Fades in and out of randomly generated colors.',
-    customOptions: ['brightness', 'delay']
+    customOptions: ['brightness', 'delay'],
   },
   'Color Flash': {
     path: `${BASEPATH}/src/routines/color-flash.py`,
@@ -61,7 +61,7 @@ module.exports = {
     description: 'Do you long to feel like a child again? Well, this is the routine for you.',
     customOptions: ['brightness', 'delay'],
   },
-  'Twinkle': {
+  Twinkle: {
     path: `${BASEPATH}/src/routines/twinkle.py`,
     description: 'A routine to accompany the all-time record-breaking hit.',
     customOptions: ['brightness', 'color', 'delay'],
@@ -71,12 +71,12 @@ module.exports = {
     description: 'A routine to accompany the all-time record-breaking hit while in a different state of mind.',
     customOptions: ['brightness', 'delay'],
   },
-  'Strobe': {
+  Strobe: {
     path: `${BASEPATH}/src/routines/strobe.py`,
     description: 'Strobe lights. Can be customized to any color. Obvious epilepsy warning.',
     customOptions: ['color'],
   },
-  'Scanner': {
+  Scanner: {
     path: `${BASEPATH}/src/routines/scanner.py`,
     description: 'Please stand still while the system invasively scans your body and deepest desires.',
     customOptions: ['brightness', 'color', 'delay'],
@@ -101,4 +101,4 @@ module.exports = {
     description: 'Get your popcorn ready... and maybe other things.',
     customOptions: ['brightness', 'delay'],
   },
-}
+};
