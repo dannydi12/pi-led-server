@@ -99,6 +99,21 @@ curl --request PUT 'http://[raspberrypi-ip]:8000/routines?name=set%20color&brigh
 
 Don't forget to include the `Authorization` header in your requests.
 
+## Customize
+
+![project file tree](https://i.ibb.co/nrB8pkW/Screen-Shot-2020-03-22-at-2-01-20-PM.png)
+
+* Add a routine listing and see existing routines: `pi-led-server/src/routines/routine-manifest.js`
+* Alter LED-related configurations: `pi-led-server/src/routines/lib/config.py`
+* Alter API server configurations: `pi-led-server/config.js`
+
+### Add a New Routine
+
+* Copy the contents of `pi-led-server/src/routines/lib/template.py`
+* Create new file in `pi-led-server/src/routines` named `[routine name].py`
+* Paste the boilerplate code the `template.py`
+* Add an entry to `pi-led-server/src/routines/routine-manifest.js`
+
 ## Built With
 
 * [rpi-ws281x-python](https://github.com/rpi-ws281x/rpi-ws281x-python) - For controlling/accessing the LEDs
