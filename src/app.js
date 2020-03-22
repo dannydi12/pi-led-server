@@ -10,6 +10,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
+const authorize = require('./middleware/authorize');
 const errorHandler = require('./middleware/error');
 const { NODE_ENV } = require('../config');
 const routinesRouter = require('./routinesRouter/routinesRouter');
@@ -19,6 +20,7 @@ const app = express();
 app.use(morgan(NODE_ENV === 'production' ? 'tiny' : 'common'));
 app.use(helmet());
 app.use(cors());
+app.use(authorize);
 app.use(errorHandler);
 
 app.use('/routines', routinesRouter);
