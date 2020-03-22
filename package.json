@@ -1,14 +1,13 @@
 {
-  "name": "express-boilerplate",
+  "name": "pi-led-server",
   "version": "1.0.0",
   "description": "",
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "test": "mocha --require test/setup.js",
     "dev": "nodemon ./src/server.js",
     "predeploy": "npm audit",
-    "deploy": "node ./src/server.js"
+    "deploy": "env NODE_ENV=production node ./src/server.js"
   },
   "keywords": [],
   "author": "",

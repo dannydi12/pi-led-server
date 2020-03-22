@@ -1,3 +1,10 @@
+/**
+ * This file lists all the available routines. Make sure to add new routines here.
+ *
+ * @author Daniel DiVenere
+ * @since  3/22/20
+ */
+
 const { BASEPATH } = require('../../config');
 
 module.exports = {
