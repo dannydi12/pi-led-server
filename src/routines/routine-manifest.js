@@ -6,10 +6,15 @@ module.exports = {
     description: 'Light swells twice to notify user of something.',
     customOptions: ['brightness', 'color', 'delay']
   },
-  'Siren': {
+  'Police': {
     path: `${BASEPATH}/src/routines/police.py`,
     description: 'Simulates police car lights.',
     customOptions: ['brightness', 'delay']
+  },
+  'Siren': {
+    path: `${BASEPATH}/src/routines/siren.py`,
+    description: 'Simulates siren lights.',
+    customOptions: ['brightness', 'color', 'delay']
   },
   'Rainbow': {
     path: `${BASEPATH}/src/routines/rainbow.py`,
