@@ -4,15 +4,15 @@ import time
 import argparse
 from lib import common
 from lib import config
-from random import randint, random
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', '--brightness', default = 200, help='set brightness (0-255)')
     parser.add_argument('-r', '--red', default = 255, help='set red value')
-    parser.add_argument('-g', '--green', default = 100, help='set green value')
+    parser.add_argument('-g', '--green', default = 0, help='set green value')
     parser.add_argument('-b', '--blue', default = 0, help='set blue value')
-    parser.add_argument('-d', '--delay', default = 0, help='set delay in milliseconds')
+    parser.add_argument('-d', '--delay', default = 50, help='set delay in milliseconds')
+
     args = parser.parse_args()
 
     red = int(args.red)
@@ -25,7 +25,8 @@ if __name__ == '__main__':
     strip.begin()
 
     try:
-        common.fadeIn(strip, red, green, blue, brightness, 10000)
+        while True:
+          common.theaterChaseRainbow(strip, delay)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)

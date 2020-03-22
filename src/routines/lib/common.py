@@ -125,7 +125,7 @@ def colorfulScannerBack(strip, seconds=0.5, eyeSize=10):
         strip.show()
         time.sleep(seconds)
 
-def theaterChase(strip, r, g, b, seconds=50, iterations=10):
+def theaterChase(strip, r, g, b, seconds=1, iterations=10):
     """Movie theater light style chaser animation."""
     for j in range(iterations):
         for q in range(3):
@@ -164,13 +164,13 @@ def rainbowCycle(strip, wait_ms=20, iterations=5):
         strip.show()
         time.sleep(wait_ms / 1000.0)
 
-def theaterChaseRainbow(strip, wait_ms=50):
+def theaterChaseRainbow(strip, seconds=0.05):
     """Rainbow movie theater light style chaser animation."""
     for j in range(256):
         for q in range(3):
             for i in range(0, strip.numPixels(), 3):
                 strip.setPixelColor(i + q, wheel((i + j) % 255))
             strip.show()
-            time.sleep(wait_ms / 1000.0)
+            time.sleep(seconds)
             for i in range(0, strip.numPixels(), 3):
                 strip.setPixelColor(i + q, 0)

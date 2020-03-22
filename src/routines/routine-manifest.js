@@ -86,4 +86,14 @@ module.exports = {
     description: 'This could be used to wake you up.',
     customOptions: ['brightness', 'color'],
   },
+  'Theater Lights': {
+    path: `${BASEPATH}/src/routines/theater.py`,
+    description: 'Get your popcorn ready',
+    customOptions: ['brightness', 'color', 'delay'],
+  },
+  'Rainbow Theater Lights': {
+    path: `${BASEPATH}/src/routines/rainbow-theater.py`,
+    description: 'Get your popcorn ready... and maybe other things.',
+    customOptions: ['brightness', 'delay'],
+  },
 }
