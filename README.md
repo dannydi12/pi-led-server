@@ -22,13 +22,13 @@ Also NPM:
 npm --version
 ```
 
-Also ensure that you have Python 3.x running on your Raspberry Pi. You can check that by running:
+Ensure that you have Python 3.x running on your Raspberry Pi. You can check that by running:
 
 ```
 python --version
 ```
 
-Also check for Python's package manager, pip.
+Check for Python's package manager, pip.
 
 ```
 pip --version
@@ -48,7 +48,7 @@ pip --version
 
 That should be all that's needed to get everything installed. Just run `sudo npm start` to turn on the server. 
 
-**Note: the server startup command requires the `sudo` because it needs root privileges to access the LED strip.**
+**Note: the server startup command requires `sudo` because it needs root privileges to access the LED strip.**
 
 ## Usage
 
@@ -58,7 +58,7 @@ Several LED routines have already been pre-programmed to set a coding structure 
 
 Simply send HTTP requests to the API to control the LED strip.
 
-Get a list of available routines to execute:
+Get a list of available routines that can be executed:
 ```
 curl --request GET 'http://[raspberrypi-ip]:8000/routines' \
 --header 'Authorization:[your-secret-key]'
@@ -109,10 +109,10 @@ Don't forget to include the `Authorization` header in your requests.
 
 ### Add a New Routine
 
-* Copy the contents of `pi-led-server/src/routines/lib/template.py`
-* Create new file in `pi-led-server/src/routines` named `[routine name].py`
-* Paste the boilerplate code the `template.py`
-* Add an entry to `pi-led-server/src/routines/routine-manifest.js`
+1. Copy the contents of `pi-led-server/src/routines/lib/template.py`
+2. Create new file in `pi-led-server/src/routines` named `[routine name].py`
+3. Paste the boilerplate code the `template.py`
+4. Add an entry to `pi-led-server/src/routines/routine-manifest.js`
 
 ## Built With
 
