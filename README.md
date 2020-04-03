@@ -53,7 +53,6 @@ pip --version
 7. Rename 'example.env' to '.env' with `mv example.env .env`
 8. View or edit `[name of project folder]/src/routines/lib/config.py`. Notice that `LED_COUNT` has been set to 150 but feel free to change that to whatever amount of LEDs you have (just make sure you have the proper power supply). `LED_BRIGHTNESS` represents the default brightness, you can make it brighter by setting it to 255.
 9. Edit `api.sh` with the full absolute path to the `pi-led-server` folder
-10. Run `chmod 755 webserver.sh` to make it executable
 11. Deploy: `sudo pm2 start webserver.sh` and then `sudo pm2 save`
 
 That should be all that's needed to get everything installed. If you are having issues with `pm2`, just run `sudo npm start` in the folder to turn on the server. 
