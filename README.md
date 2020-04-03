@@ -7,7 +7,7 @@ Finally, a project that provides a turn-key solution for setting up remotely-con
 
 ## Quick Start
 
-A separate repository for a React front-end can be found [here](https://google.com). 
+A separate repository for a React front end can be found [here](https://github.com/dannydi12/pi-led-client). 
 
 ### Prerequisites
 
@@ -48,11 +48,15 @@ pip --version
 2. Enter the directory with `cd pi-led-server` 
 3. Install with NPM: `npm i`
 4. Install python dependencies: `sudo pip install rpi_ws281x`
-5. Open the 'example.env' file with your favorite text editor and change the API key to something secure. I recommend using a [password generator]([https://passwordsgenerator.net/](https://passwordsgenerator.net/)) to make a strong key.
-6. Rename 'example.env' to '.env' with `mv example.env .env`
-7. View or edit `[name of project folder]/src/routines/lib/config.py`. Notice that `LED_COUNT` has been set to 150 but feel free to change that to whatever amount of LEDs you have (just make sure you have the proper power supply). `LED_BRIGHTNESS` represents the default brightness, you can make it brighter by setting it to 255.
+5. Install the deployment tool: `sudo npm i pm2 -g`
+6. Open the 'example.env' file with your favorite text editor and change the API key to something secure. I recommend using a [password generator]([https://passwordsgenerator.net/](https://passwordsgenerator.net/)) to make a strong key.
+7. Rename 'example.env' to '.env' with `mv example.env .env`
+8. View or edit `[name of project folder]/src/routines/lib/config.py`. Notice that `LED_COUNT` has been set to 150 but feel free to change that to whatever amount of LEDs you have (just make sure you have the proper power supply). `LED_BRIGHTNESS` represents the default brightness, you can make it brighter by setting it to 255.
+9. Edit `api.sh` with the full absolute path to the `pi-led-server` folder
+10. Run `chmod 755 webserver.sh` to make it executable
+11. Deploy: `sudo pm2 start webserver.sh` and then `sudo pm2 save`
 
-That should be all that's needed to get everything installed. Just run `sudo npm start` to turn on the server. 
+That should be all that's needed to get everything installed. If you are having issues with `pm2`, just run `sudo npm start` in the folder to turn on the server. 
 
 **Note: the server startup command requires `sudo` because it needs root privileges to access the LED strip.**
 
@@ -60,7 +64,7 @@ That should be all that's needed to get everything installed. Just run `sudo npm
 
 Several LED routines have already been pre-programmed to set a coding structure guide and so any newcomer can get started as quickly as possible. So let's get started!
 
-**Reminder: I built out a React front-end to abstract all of this to a simple interface. That project can be found [here](https://google.com).**
+**Reminder: I built out a React front end to abstract all of this to a simple interface. That project can be found [here](https://github.com/dannydi12/pi-led-client).**
 
 Simply send HTTP requests to the API to control the LED strip.
 
