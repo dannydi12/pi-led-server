@@ -41,7 +41,7 @@ module.exports = {
   'Color Wipe': {
     path: `${BASEPATH}/src/routines/color-wipes.py`,
     description: 'Random colors will wipe across the display. Soothing.',
-    customOptions: ['brightness', 'color', 'delay'],
+    customOptions: ['brightness', 'delay'],
   },
   'Random Color Fill': {
     path: `${BASEPATH}/src/routines/random-color-fill.py`,
