@@ -13,35 +13,15 @@ module.exports = {
     description: 'Wanna show this off?',
     customOptions: [],
   },
-  Notify: {
-    path: `${BASEPATH}/src/routines/notify.py`,
-    description: 'Light swells twice to notify user of something.',
-    customOptions: ['brightness', 'color', 'delay'],
-  },
-  Police: {
-    path: `${BASEPATH}/src/routines/police.py`,
-    description: 'Simulates police car lights.',
-    customOptions: ['brightness', 'delay'],
-  },
-  Siren: {
-    path: `${BASEPATH}/src/routines/siren.py`,
-    description: 'Simulates siren lights.',
-    customOptions: ['brightness', 'color', 'delay'],
-  },
   Rainbow: {
     path: `${BASEPATH}/src/routines/rainbow.py`,
     description: 'Double rainbow all the way.',
     customOptions: ['brightness'],
   },
-  Listening: {
-    path: `${BASEPATH}/src/routines/listening.py`,
-    description: 'Can be used to show a digital assistant is awaiting a command.',
-    customOptions: ['brightness', 'color'],
-  },
-  'Not Listening': {
-    path: `${BASEPATH}/src/routines/not-listening.py`,
-    description: 'Can be used to show a digital assistant is no longer awaiting a command.',
-    customOptions: ['brightness', 'color'],
+  Police: {
+    path: `${BASEPATH}/src/routines/police.py`,
+    description: 'Simulates police car lights.',
+    customOptions: ['brightness', 'delay'],
   },
   'Color Fade': {
     path: `${BASEPATH}/src/routines/color-fade.py`,
@@ -93,11 +73,6 @@ module.exports = {
     description: 'Please stand still while the system invasively scans your body and deepest desires (child edition).',
     customOptions: ['brightness', 'delay'],
   },
-  'Wake Up': {
-    path: `${BASEPATH}/src/routines/wakeup.py`,
-    description: 'This could be used to wake you up.',
-    customOptions: ['brightness', 'color'],
-  },
   'Theater Lights': {
     path: `${BASEPATH}/src/routines/theater.py`,
     description: 'Get your popcorn ready',
@@ -107,5 +82,30 @@ module.exports = {
     path: `${BASEPATH}/src/routines/rainbow-theater.py`,
     description: 'Get your popcorn ready... and maybe other things.',
     customOptions: ['brightness', 'delay'],
+  },
+  'Wake Up': {
+    path: `${BASEPATH}/src/routines/wakeup.py`,
+    description: 'This could be used to wake you up.',
+    customOptions: ['brightness', 'color'],
+  },
+  Siren: {
+    path: `${BASEPATH}/src/routines/siren.py`,
+    description: 'Simulates siren lights.',
+    customOptions: ['brightness', 'color', 'delay'],
+  },
+  Listening: {
+    path: `${BASEPATH}/src/routines/listening.py`,
+    description: 'Can be used to show a digital assistant is awaiting a command.',
+    customOptions: ['brightness', 'color'],
+  },
+  'Not Listening': {
+    path: `${BASEPATH}/src/routines/not-listening.py`,
+    description: 'Can be used to show a digital assistant is no longer awaiting a command.',
+    customOptions: ['brightness', 'color'],
+  },
+  Notify: {
+    path: `${BASEPATH}/src/routines/notify.py`,
+    description: 'Light swells twice to notify user of something.',
+    customOptions: ['brightness', 'color', 'delay'],
   },
 };
