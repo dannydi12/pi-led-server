@@ -16,7 +16,7 @@ module.exports = {
   Rainbow: {
     path: `${BASEPATH}/src/routines/rainbow.py`,
     description: 'Double rainbow all the way.',
-    customOptions: ['brightness'],
+    customOptions: ['brightness', 'delay'],
   },
   Police: {
     path: `${BASEPATH}/src/routines/police.py`,

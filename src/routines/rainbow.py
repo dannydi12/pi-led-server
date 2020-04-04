@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser.add_argument('-r', '--red', default = 0, help='set red value')
     parser.add_argument('-g', '--green', default = 0, help='set green value')
     parser.add_argument('-b', '--blue', default = 0, help='set blue value')
-    parser.add_argument('-d', '--delay', default = 0, help='set delay in milliseconds')
+    parser.add_argument('-d', '--delay', default = 100, help='set delay in milliseconds')
     args = parser.parse_args()
 
     delay = int(args.delay) / 1000.0
