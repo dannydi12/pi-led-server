@@ -24,8 +24,9 @@ if __name__ == '__main__':
     strip.begin()
 
     try:
-        # common.fadeIn(strip, red, green, blue, brightness)
-        common.setColor(strip, red, green, blue)
+        while(true):
+            common.setColor(strip, red, green, blue)
+            time.sleep(1000)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)
