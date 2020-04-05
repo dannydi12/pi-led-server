@@ -18,21 +18,23 @@ module.exports = {
     description: 'Double rainbow all the way.',
     customOptions: ['brightness', 'delay'],
   },
-  'Scroll Visualizer': {
-    path: `${BASEPATH}/src/routines/visualizer/scroll.py`,
-    description: 'Visualizes sound!',
-    customOptions: [],
-  },
-  'Energy Visualizer': {
-    path: `${BASEPATH}/src/routines/visualizer/energy.py`,
-    description: 'Visualizes sound!',
-    customOptions: [],
-  },
-  'Spectrum Visualizer': {
-    path: `${BASEPATH}/src/routines/visualizer/spectrum.py`,
-    description: 'Visualizes sound!',
-    customOptions: [],
-  },
+  // Uncomment for sound visualizer features
+  //
+  // 'Scroll Visualizer': {
+  //   path: `${BASEPATH}/src/routines/visualizer/scroll.py`,
+  //   description: 'Visualizes sound!',
+  //   customOptions: [],
+  // },
+  // 'Energy Visualizer': {
+  //   path: `${BASEPATH}/src/routines/visualizer/energy.py`,
+  //   description: 'Visualizes sound!',
+  //   customOptions: [],
+  // },
+  // 'Spectrum Visualizer': {
+  //   path: `${BASEPATH}/src/routines/visualizer/spectrum.py`,
+  //   description: 'Visualizes sound!',
+  //   customOptions: [],
+  // },
   Police: {
     path: `${BASEPATH}/src/routines/police.py`,
     description: 'Simulates police car lights.',
