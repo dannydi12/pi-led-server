@@ -11,7 +11,7 @@ A separate repository for a React front end can be found [here](https://github.c
 
 ### Prerequisites
 
-For one thing, you'll need a Raspberry Pi 3 or newer. You can find one on Amazon or anywhere else on the internet, so I won't add a link for now.
+For one thing, you'll need a Raspberry Pi 3 or newer and a WS281x LED strip.
 
 Make sure you have Node installed. If not, go to [Node's download page]([https://nodejs.org/en/](https://nodejs.org/en/)). 
 Or just run this to get the latest version of Node:
@@ -58,6 +58,22 @@ pip --version
 That should be all that's needed to get everything installed. If you are having issues with `pm2`, just run `sudo npm start` in the folder to turn on the server. 
 
 **Note: the server startup command requires `sudo` because it needs root privileges to access the LED strip.**
+
+## Hardware
+
+The following instructions were pulled from the [Audio Reactive LED Strip repository](https://github.com/scottlawsonbc/audio-reactive-led-strip) by @scottlawsonbc:
+
+*Since the Raspberry Pi is a 3.3V device, the best practice is to use a logic level converter to shift the 3.3V logic to 5V logic (WS2812 LEDs use 5V logic).*
+
+*Although a logic level converter is the best practice, sometimes it will still work if you simply connect the LED strip directly to the Raspberry Pi.*
+
+*You cannot power the LED strip using the Raspberry Pi GPIO pins, you need to have an external 5V power supply.*
+
+*The connections are:*
+
+* *Connect GND on the power supply to GND on the LED strip and GND on the Raspberry Pi (they MUST share a common GND connection)*
+* *Connect +5V on the power supply to +5V on the LED strip*
+* *Connect a PWM GPIO pin on the Raspberry Pi to the data pin on the LED strip. If using the Raspberry Pi 2 or 3, then try Pin 18(GPIO5).*
 
 ## Usage
 
@@ -110,7 +126,7 @@ Don't forget to include the `Authorization` header in your requests.
 
 ## Customize
 
-![project file tree](https://i.ibb.co/nrB8pkW/Screen-Shot-2020-03-22-at-2-01-20-PM.png)
+![project file tree](screens/tree.png)
 
 * Add a routine listing and see existing routines: `pi-led-server/src/routines/routine-manifest.js`
 * Alter LED-related configurations: `pi-led-server/src/routines/lib/config.py`
@@ -123,9 +139,20 @@ Don't forget to include the `Authorization` header in your requests.
 3. Paste the boilerplate code the `template.py`
 4. Add an entry to `pi-led-server/src/routines/routine-manifest.js`
 
+
+## Enabling Sound Visualization
+
+This repo also comes with a built-in sound visualizer (thanks to [Scott Lawson's Audio Reactive LED Strip](https://github.com/scottlawsonbc/audio-reactive-led-strip)). To enable it, simply follow the instructions [here](https://github.com/scottlawsonbc/audio-reactive-led-strip#installation-for-raspberry-pi).
+
+Once your mic is setup and the proper python libraries are installed. Go to `pi-led-server/src/routines/routine-manifest.js` and uncomment the three visualizer routines. 
+
+I haven't had a chance to properly integrate the code, so the visualizers still have their own config file. Go to `pi-led-server/src/routines/visualizer/config.py` and set `N_PIXELS` to however many LEDs you have. Just make sure you round down to the nearest even number (no odd numbers).
+
+
 ## Built With
 
-* [rpi-ws281x-python](https://github.com/rpi-ws281x/rpi-ws281x-python) - For controlling/accessing the LEDs
+* [rpi-ws281x-python](https://github.com/rpi-ws281x/rpi-ws281x-python) for controlling/accessing the LEDs
+* [Audio Reactive LED Strip](https://github.com/scottlawsonbc/audio-reactive-led-strip) by @scottlawsonbc for sound visualization routines
 * Node
 * Python
 * Express
