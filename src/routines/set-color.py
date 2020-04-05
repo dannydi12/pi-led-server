@@ -24,7 +24,7 @@ if __name__ == '__main__':
     strip.begin()
 
     try:
-        while(true):
+        while True:
             common.setColor(strip, red, green, blue)
             time.sleep(1000)
 
