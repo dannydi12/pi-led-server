@@ -5,6 +5,16 @@
 
 Finally, a project that provides a turn-key solution for setting up remotely-controlled LEDs on a Raspberry Pi with Express. This project allows users to get up and running with WS281x LED strips while also providing a simple API server for granular control.
 
+## Benefits and Features
+
+* It's RESTful
+* It's modular
+* Includes sound visualizers
+* Abstracted but easily customizable
+* Can be integrated with digital assistants or used for home automation
+* Implemented in digital experiences (escape rooms, etc)
+* Just plain beautiful to install in your room
+
 ## Quick Start
 
 A separate repository for a React front end can be found [here](https://github.com/dannydi12/pi-led-client). 
