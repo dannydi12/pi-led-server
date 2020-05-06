@@ -29,6 +29,7 @@ if __name__ == '__main__':
           common.randomColorFill(strip)
           common.randomColorFill(strip)
           common.rainbow(strip, 100)
+          
           for i in range(8):
             common.rainbow(strip, 0)
 
@@ -52,10 +53,8 @@ if __name__ == '__main__':
             common.setColor(strip, 0, 0, 255)
             time.sleep(0.3)
 
-          for i in range(2):
-            common.fadeIn(strip, 255, 0, 0, 255, 10)
-            common.fadeOut(strip, 255, 0, 0, 255, 10)
-            time.sleep(0.5)
+          for i in range(8):
+            common.crossFade(strip, 0)
 
           for i in range(20):
             rgb = common.randomRGB()
@@ -63,7 +62,7 @@ if __name__ == '__main__':
             common.setColor(strip, rgb[0], rgb[1], rgb[2])
             time.sleep(0.5)
 
-          for i in range(30):
+          for i in range(5):
             rgb = common.randomRGB()
             
             common.fadeIn(strip, rgb[0], rgb[1], rgb[2], 255)
