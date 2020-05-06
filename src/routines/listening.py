@@ -18,7 +18,7 @@ if __name__ == '__main__':
     green = int(args.green)
     blue = int(args.blue)
     brightness= int(args.brightness)
-    delay = int(args.delay) / 1000.0
+    delay = int(args.delay)
 
     strip = config.setStrip(brightness)
     strip.begin()

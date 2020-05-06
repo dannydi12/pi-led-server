@@ -14,7 +14,7 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--delay', default = 100, help='set delay in milliseconds')
     args = parser.parse_args()
 
-    delay = int(args.delay) / 1000.0
+    delay = int(args.delay)
 
     strip = config.setStrip(int(args.brightness))
     strip.begin()

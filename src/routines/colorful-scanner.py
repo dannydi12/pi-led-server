@@ -17,7 +17,7 @@ if __name__ == '__main__':
     red = int(args.red)
     green = int(args.green)
     blue = int(args.blue)
-    delay = int(args.delay) / 1000.0
+    delay = int(args.delay)
     brightness = int(args.brightness)
 
     strip = config.setStrip(brightness)
@@ -27,7 +27,7 @@ if __name__ == '__main__':
         while True:
           common.colorfulScanner(strip, delay, 20)
           common.colorfulScannerBack(strip, delay, 20)
-          time.sleep(delay)
+          time.sleep(delay / 1000.0)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)

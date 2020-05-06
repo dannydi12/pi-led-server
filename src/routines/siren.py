@@ -18,7 +18,7 @@ if __name__ == '__main__':
     red = int(args.red)
     green = int(args.green)
     blue = int(args.blue)
-    delay = int(args.delay) / 1000.0
+    delay = int(args.delay)
     brightness = int(args.brightness)
 
     strip = config.setStrip(brightness)
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         while True:            
             common.fadeIn(strip, red, green, blue, brightness)
             common.fadeOut(strip, red, green, blue, brightness)
-            time.sleep(delay)
+            time.sleep(delay / 1000.0)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)

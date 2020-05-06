@@ -17,7 +17,7 @@ if __name__ == '__main__':
     red = int(args.red)
     green = int(args.green)
     blue = int(args.blue)
-    delay = int(args.delay) / 1000.0
+    delay = int(args.delay)
     brightness = int(args.brightness)
 
     strip = config.setStrip(brightness)
@@ -28,23 +28,23 @@ if __name__ == '__main__':
           common.randomTwinkle(strip)
           common.randomColorFill(strip)
           common.randomColorFill(strip)
-          common.rainbow(strip, 0.1)
+          common.rainbow(strip, 100)
           for i in range(8):
             common.rainbow(strip, 0)
 
           common.theaterChaseRainbow(strip)
 
           for i in range(8):
-            common.theaterChase(strip, 255, 100, 0, 50/1000.0)
+            common.theaterChase(strip, 255, 100, 0, 50)
 
-          common.scanner(strip, 0, 255, 0, 0.05, 20)
-          common.scannerBack(strip, 0, 255, 0, 0.05, 20)
+          common.scanner(strip, 0, 255, 0, 50, 20)
+          common.scannerBack(strip, 0, 255, 0, 50, 20)
 
-          common.colorfulScanner(strip, 0.05, 20)
-          common.colorfulScannerBack(strip, 0.05, 20)
+          common.colorfulScanner(strip, 50, 20)
+          common.colorfulScannerBack(strip, 50, 20)
 
-          common.scanner(strip, 255, 0, 0, 0.05, 20)
-          common.scannerBack(strip, 255, 0, 0, 0.05, 20)
+          common.scanner(strip, 255, 0, 0, 50, 20)
+          common.scannerBack(strip, 255, 0, 0, 50, 20)
 
           for i in range(15):
             common.setColor(strip, 255, 0, 0)

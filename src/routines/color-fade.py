@@ -16,7 +16,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     brightness= int(args.brightness)
-    delay = int(args.delay) / 1000.0
+    delay = int(args.delay)
 
     strip = config.setStrip(int(args.brightness))
     strip.begin()
@@ -27,7 +27,7 @@ if __name__ == '__main__':
             
             common.fadeIn(strip, rgb[0], rgb[1], rgb[2], brightness)
             common.fadeOut(strip, rgb[0], rgb[1], rgb[2], brightness)
-            time.sleep(delay)
+            time.sleep(delay / 1000.0)
 
     except KeyboardInterrupt:
         common.setColor(strip, 0, 0, 0)
