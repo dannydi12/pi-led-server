@@ -19,6 +19,17 @@ def randomRGB():
     return rgb
 
 # Shows
+
+def crossFade(strip, ms=50):
+    """Crossfades to different colors"""
+    for i in range(360):
+        rgb = colorsys.hsv_to_rgb(i/360.0, 1, 1)
+        for j in range(strip.numPixels()):
+            strip.setPixelColor(j, Color(int(rgb[0]*255), int(rgb[1]*255), int(rgb[2]*255)))
+
+        strip.show()
+        time.sleep(ms/1000.0)
+
 def colorWipe(strip, r, g, b, seconds=0.05):
     """Wipe color across display a pixel at a time."""
     for i in range(strip.numPixels()):

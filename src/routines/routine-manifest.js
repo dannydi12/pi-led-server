@@ -13,6 +13,11 @@ module.exports = {
     description: 'Wanna show this off?',
     customOptions: [],
   },
+  Crossfade: {
+    path: `${BASEPATH}/src/routines/crossfade.py`,
+    description: 'Relaxing colors.',
+    customOptions: ['brightness', 'delay'],
+  },
   Rainbow: {
     path: `${BASEPATH}/src/routines/rainbow.py`,
     description: 'Double rainbow all the way.',
