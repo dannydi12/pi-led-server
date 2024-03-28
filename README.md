@@ -169,7 +169,7 @@ I haven't had a chance to properly integrate the code, so the visualizers still 
 
 ## Authors
 
-* **Daniel DiVenere** - *Initial work* - [Portfolio](https://imdan.io)
+* **Daniel DiVenere** - *Initial work* - [Portfolio](https://danthebuilder.com)
 
 ## Contributing
 
